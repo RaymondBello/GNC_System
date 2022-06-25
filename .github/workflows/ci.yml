@@ -45,9 +45,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Configuring "${{ matrix.block }}" Block (${{ matrix.configuration }})
+      if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       run: cmake -S ${{ matrix.block }}/ -Bbuild -DCMAKE_BUILD_TYPE=${{ matrix.configuration }}
 
     - name: ${{ matrix.block }} build with ${{ matrix.compiler }}
+      if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       run: cmake --build build
 
     - name: Test
