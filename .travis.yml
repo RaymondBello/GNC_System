@@ -15,7 +15,6 @@ matrix:
           packages:
             - lcov
             - g++-7
-            - GLUT
             - OpenGL
 
       env:
@@ -27,7 +26,6 @@ matrix:
         homebrew:
           packages:
           - lcov
-          - GLUT
           - OpenGL
           update: true
 

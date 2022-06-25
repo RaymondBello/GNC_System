@@ -43,9 +43,9 @@ function(target_set_warnings)
         # Unless you'd like to support MSVC in the code with pragmas, this is probably the best option
         list(APPEND WarningFlags "/W4")
       elseif(WGCC)
-        list(APPEND WarningFlags "-Wall")
+        list(APPEND WarningFlags "-Wall" "-Wextra" "-Wpedantic")
       elseif(WCLANG)
-        list(APPEND WarningFlags "-Wall")
+        list(APPEND WarningFlags "-Wall" "-Weverything" "-Wpedantic")
       endif()
     elseif(NOT ${disable_all} EQUAL -1)
       set(SystemIncludes TRUE) # Treat includes as if coming from system

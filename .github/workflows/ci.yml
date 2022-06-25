@@ -15,6 +15,7 @@ jobs:
         toolchain:
           - macos-clang
           - linux-gcc
+          - windows-msvc
 
         configuration:
           - Debug
@@ -29,7 +30,9 @@ jobs:
             os: ubuntu-latest
             compiler: gcc
 
-          
+          - toolchain: windows-msvc
+            os: windows-latest
+            compiler: msvc
 
 
     steps:
