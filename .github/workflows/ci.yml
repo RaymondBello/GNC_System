@@ -7,7 +7,7 @@ on:
 jobs:
   build-and-test:
 
-    name: ${{ matrix.block }} on ${{ matrix.toolchain }}
+    name: ${{ matrix.toolchain }} ${{ matrix.block }} build
     runs-on: ${{ matrix.os }}
 
     strategy:
