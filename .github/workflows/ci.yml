@@ -1,4 +1,4 @@
-name: CI
+name: GNC System  
 
 on:
   push:
@@ -23,6 +23,8 @@ jobs:
         
         block:
           - rasbian
+          - ground_station
+          - rp2040
 
         include:
           - toolchain: macos-clang
@@ -49,6 +51,7 @@ jobs:
       run: cmake --build build
 
     - name: Test
+      if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       working-directory: build
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
