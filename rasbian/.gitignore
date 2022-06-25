@@ -32,5 +32,8 @@
 *.app
 *.x
 
+# Settings
+.vscode/
+
 # Build directory
 build/
