@@ -53,8 +53,9 @@ jobs:
       run: cmake --build build
 
     - name: Test
-      if:  matrix.block == 'rasbian' || matrix.block == 'rp2040'
-      if:  matrix.os != 'windows-msvc'
+      if:  |
+        matrix.os != 'windows-msvc' &&
+        (matrix.block == 'rasbian' || matrix.block == 'rp2040')
       working-directory: build
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
