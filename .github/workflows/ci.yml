@@ -54,7 +54,7 @@ jobs:
 
     - name: Test
       if:  |
-        matrix.os != 'windows-msvc' &&
+        matrix.toolchain != 'windows-msvc' &&
         (matrix.block == 'rasbian' || matrix.block == 'rp2040')
       working-directory: build
       env:
