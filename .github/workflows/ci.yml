@@ -5,7 +5,7 @@ on:
   pull_request:
 
 env: 
-  PICO_SDK_PATH: $GITHUB_WORKSPACE/pico-sdk
+  PICO_SDK_PATH: ${{ github.workspace }}/pico-sdk
 
 jobs:
   build-and-test:
