@@ -41,18 +41,24 @@ jobs:
             os: windows-latest
             compiler: msvc
 
-
     steps:
     - name: Checkout Code
       uses: actions/checkout@v2
 
+    - name: Install GNU Arm Embedded Toolchain (arm-none-eabi-gcc)
+      if: matrix.block == rp2040
+      uses: carlosperate/arm-none-eabi-gcc-action@v1
+      with: 
+        path-env-var: PICO_TOOLCHAIN_PATH
+      
+    - name: Setup embedded enviroment
+      if: matrix.block == rp2040
+      run: echo "SDK Path is $PICO_SDK_PATH. arm-non-eabi-gcc path is $PICO_TOOLCHAIN_PATH"
 
     - name: Configuring "${{ matrix.block }}" Build (${{ matrix.configuration }})
       if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       run: cmake -S ${{ matrix.block }}/ -Bbuild -DCMAKE_BUILD_TYPE=${{ matrix.configuration }}
     
-    - name: Ensure enviroment variable are set
-      run: echo $PICO_SDK_PATH
 
     - name: ${{ matrix.block }} build with ${{ matrix.compiler }}
       if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
