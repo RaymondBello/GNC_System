@@ -63,7 +63,7 @@ jobs:
     - name: ${{ matrix.block }} build with ${{ matrix.compiler }}
       if:  |
         matrix.block == 'rasbian' ||
-        ( matrix.block == 'rp2040' && matrix.toolchain != 'macos-clang')
+        ( matrix.block == 'rp2040' && matrix.toolchain == 'linux-gcc')
       run: cmake --build build
 
     - name: Test
