@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
 
+env: 
+  PICO_SDK_PATH: $GITHUB_WORKSPACE/pico-sdk
+
 jobs:
   build-and-test:
 
@@ -18,7 +21,6 @@ jobs:
           - windows-msvc
 
         configuration:
-          - Debug
           - Release
         
         block:
@@ -44,9 +46,13 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v2
 
-    - name: Configuring "${{ matrix.block }}" Block (${{ matrix.configuration }})
+
+    - name: Configuring "${{ matrix.block }}" Build (${{ matrix.configuration }})
       if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       run: cmake -S ${{ matrix.block }}/ -Bbuild -DCMAKE_BUILD_TYPE=${{ matrix.configuration }}
+    
+    - name: Ensure enviroment variable are set
+      run: echo $PICO_SDK_PATH
 
     - name: ${{ matrix.block }} build with ${{ matrix.compiler }}
       if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
@@ -55,7 +61,7 @@ jobs:
     - name: Test
       if:  |
         matrix.toolchain != 'windows-msvc' &&
-        (matrix.block == 'rasbian' || matrix.block == 'rp2040')
+        matrix.block == 'rasbian' 
       working-directory: build
       env:
         CTEST_OUTPUT_ON_FAILURE: 1
