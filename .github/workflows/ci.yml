@@ -55,13 +55,15 @@ jobs:
       if: matrix.block == 'rp2040'
       run: echo "SDK Path is $PICO_SDK_PATH. arm-non-eabi-gcc path is $PICO_TOOLCHAIN_PATH"
 
-    - name: Configuring "${{ matrix.block }}" Build (${{ matrix.configuration }})
+    - name: Configuring "${{ matrix.block }}" in (${{ matrix.configuration }})
       if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
       run: cmake -S ${{ matrix.block }}/ -Bbuild -DCMAKE_BUILD_TYPE=${{ matrix.configuration }}
     
 
     - name: ${{ matrix.block }} build with ${{ matrix.compiler }}
-      if: matrix.block == 'rasbian' || matrix.block == 'rp2040'
+      if:  |
+        (matrix.block == 'rasbian' || matrix.block == 'rp2040') &&
+        matrix.toolchain != 'macos-clang'
       run: cmake --build build
 
     - name: Test
