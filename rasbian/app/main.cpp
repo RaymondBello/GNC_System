@@ -10,9 +10,6 @@
 #include <stdlib.h>
 #include <wiringPiSPI.h>
 
-#include "exampleConfig.h"
-#include "example.h"
-
 #define SPI_CHANNEL 0
 #define SPI_CLOCK_SPEED 1000000
 
