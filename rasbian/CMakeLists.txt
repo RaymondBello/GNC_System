@@ -50,7 +50,9 @@ set(LIBRARY_NAME engine)  # Default name for the library built from src/*.cpp (c
 # --------------------------------------------------------------------------------
 # Compile all sources into a library.
 add_library(${LIBRARY_NAME} OBJECT ${SOURCES})
-add_compile_options( -lwiringPi)
+
+# Add WiringPi library to be linked in  compilation
+SET(EXTRA_COMPILE_FLAGS " -lwiringPi")
 
 # Lib needs its header files, and users of the library must also see these (PUBLIC). (No change needed)
 target_include_directories(${LIBRARY_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
