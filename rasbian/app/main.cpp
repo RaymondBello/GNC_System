@@ -8,16 +8,20 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <wiringPiSPI.h>
 
 #include "exampleConfig.h"
 #include "example.h"
+
+#define SPI_CHANNEL 0
+#define SPI_CLOCK_SPEED 1000000
 
 /*
  * Simple main program that demontrates how access
  * CMake definitions (here the version number) from source code.
  */
 int main() {
-  std::cout << "C++ Boiler Plate v"
+  std::cout << "GNC System v"
             << PROJECT_VERSION_MAJOR
             << "."
             << PROJECT_VERSION_MINOR

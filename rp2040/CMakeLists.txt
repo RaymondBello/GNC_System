@@ -42,6 +42,7 @@ target_link_libraries( RP2040_UAV
     hardware_i2c 
     hardware_pio
     hardware_pwm
+    hardware_spi
     FreeRTOS
     i2c_driver
     mpu6050

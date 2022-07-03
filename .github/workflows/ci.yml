@@ -24,7 +24,7 @@ jobs:
           - Release
         
         block:
-          - rasbian
+          # - rasbian
           - ground_station
           - rp2040
 
